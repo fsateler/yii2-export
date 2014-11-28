@@ -274,11 +274,13 @@ class ExportData extends GridView
             return;
         }
 
-        $path = Yii::getAlias($this->pdfLibraryPath);
-        if (!PHPExcel_Settings::setPdfRenderer(
-                PHPExcel_Settings::PDF_RENDERER_TCPDF, $path
-            )) {
-            throw new InvalidConfigException("The pdf rendering library '{$path}' was not found or is not installed.");
+        if($this->_exportType == self::FORMAT_PDF) {
+            $path = Yii::getAlias($this->pdfLibraryPath);
+            if (!PHPExcel_Settings::setPdfRenderer(
+                    PHPExcel_Settings::PDF_RENDERER_TCPDF, $path
+                )) {
+                throw new InvalidConfigException("The pdf rendering library '{$path}' was not found or is not installed.");
+            }
         }
         $objWriter = PHPExcel_IOFactory::createWriter($this->_objPHPExcel, $this->exportConfig[$this->_exportType]['writer']);
         if (!$this->stream) {
