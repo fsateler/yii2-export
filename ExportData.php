@@ -257,6 +257,7 @@ class ExportData extends GridView
         if (!$this->_triggerDownload) {
             $this->registerAssets();
             echo $this->renderExportMenu();
+            parent::run();
             return;
         }
         ob_end_clean();
