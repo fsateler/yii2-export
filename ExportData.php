@@ -232,7 +232,7 @@ class ExportData extends GridView
         ],
     ];
     
-    private $_triggerDownload = false;
+    protected $_triggerDownload = false;
     
     /**
      * @inherit doc
