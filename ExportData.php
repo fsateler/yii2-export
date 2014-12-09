@@ -530,6 +530,8 @@ class ExportData extends GridView
         foreach ($this->columns as $column) {
             if ($column instanceof \yii\grid\SerialColumn || $column instanceof \kartik\grid\SerialColumn) {
                 $value = $column->renderDataCell($model, $key, $index);
+            } elseif ($column instanceof \yii\grid\DataColumn) {
+                $value = $column->getDataCellValue($model, $key, $index);
             } elseif (!empty($column->attribute) && $column->attribute !== null) {
                 $value = empty($model[$column->attribute]) ? "" : $model[$column->attribute];
             } elseif ($column instanceof \yii\grid\ActionColumn) {
